@@ -33,12 +33,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // セルの表示内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 自作したセルオブジェクトを作ります
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
-        // タグ番号でオブジェクトにアクセスできたら、文字を表示します
-        if let label1 = cell.viewWithTag(1) as? UILabel {
-            label1.text = "こんにちは"
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! myTableViewCell
+        // カスタムセルの中に作ったラベルにアクセスします
+        cell.myLabel.text = "こんにちは、良い天気ですね！"
         return cell
     }
 }
-
