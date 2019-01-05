@@ -32,16 +32,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     // セルの表示内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // セルを作ります（2つのラベルを表示できる [.subtitle] ）
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
-        // このセルに表示するフォント名を取得します
-        let fontname = fontName_array[indexPath.row]
-        // テキストに、指定したフォントでサンプル文字を表示します
-        cell.textLabel?.font = UIFont(name: fontname, size:18)
-        cell.textLabel?.text = "ABCDE abcde 012345 あいうえお"
-        // サブテキストに、フォント名を表示します
-        cell.detailTextLabel?.textColor = UIColor.brown
-        cell.detailTextLabel?.text = fontname
+        // 自作したセルオブジェクトを作ります
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        // タグ番号でオブジェクトにアクセスできたら、文字を表示します
+        if let label1 = cell.viewWithTag(1) as? UILabel {
+            label1.text = "こんにちは"
+        }
         return cell
     }
 }
